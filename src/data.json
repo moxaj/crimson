@@ -1,0 +1,49 @@
+{
+    "entity_definitions": [
+        {
+            "id": 0,
+            "name": "enemy0",
+            "max_health": 5,
+            "speed": 1.0
+        },
+        {
+            "id": 1,
+            "name": "enemy1",
+            "max_health": 10,
+            "speed": 0.8
+        },
+        {
+            "id": 2,
+            "name": "enemy2",
+            "max_health": 25,
+            "speed": 0.5
+        }
+    ],
+    "wave_definitions": [
+        {
+            "id": 0,
+            "spawn_definitions": [
+                {
+                    "entity_definition_id": 0,
+                    "delay": {
+                        "secs": 3,
+                        "nanos": 0
+                    }
+                }
+            ]
+        }
+    ],
+    "run_definitions": [
+        {
+            "id": 0,
+            "wave_definition_ids": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    ]
+}
