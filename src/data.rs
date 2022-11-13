@@ -1,10 +1,12 @@
+use bevy::prelude::*;
+use once_cell::sync::Lazy;
 use serde::{Deserialize, Serialize};
-use std::time::Duration;
+use std::{collections::HashMap, time::Duration};
 
 pub type Id = u64;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct EntityDefinition {
+pub struct UnitDefinition {
     pub id: Id,
     pub name: String,
     pub max_health: u16,
@@ -13,7 +15,7 @@ pub struct EntityDefinition {
 
 #[derive(Serialize, Deserialize, Debug, Copy, Clone)]
 pub struct SpawnDefinition {
-    pub entity_definition_id: Id,
+    pub unit_definition_id: Id,
     pub team_id: Id,
     pub delay: Duration,
 }
@@ -25,14 +27,17 @@ pub struct WaveDefinition {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct RunDefinition {
+pub struct WaveSetDefinition {
     pub id: Id,
     pub wave_definition_ids: Vec<Id>,
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Resource, Debug, Clone)]
 pub struct Data {
-    pub entity_definitions: Vec<EntityDefinition>,
-    pub wave_definitions: Vec<WaveDefinition>,
-    pub run_definitions: Vec<RunDefinition>,
+    pub unit_definitions: HashMap<Id, UnitDefinition>,
+    pub wave_definitions: HashMap<Id, WaveDefinition>,
+    pub wave_set_definitions: HashMap<Id, WaveSetDefinition>,
 }
+
+pub static DATA: Lazy<Data> =
+    Lazy::new(|| serde_json::from_str::<Data>(include_str!("data.json")).unwrap());
