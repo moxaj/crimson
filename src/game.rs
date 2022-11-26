@@ -83,7 +83,7 @@ pub fn run() {
         .add_plugin(LogDiagnosticsPlugin::default())
         .add_plugin(FrameTimeDiagnosticsPlugin::default())
         .add_startup_system(setup_camera)
-        .add_startup_system(spawn_player)
+        .add_startup_system(spawn_player.run)
         .add_fixed_timestep(Duration::from_millis(100), "core_loop")
         .add_fixed_timestep_system("core_loop", 0, keyboard_input)
         .run();
