@@ -9,12 +9,7 @@ pub struct SpawnTimer {
     timer: Timer,
 }
 
-pub fn clear_spawn_timers(mut commands: Commands, query: Query<Entity, With<SpawnTimer>>) {
-    for entity in &query {
-        commands.entity(entity).despawn();
-    }
-}
-
+/// Sets up the spawn timers for a wave. Triggered by the
 pub fn setup_spawn_timers(mut commands: Commands, data: Res<data::Data>, game: Res<game::Game>) {
     let wave_set_definition = &data.wave_set_definitions[&game.wave_set_definition_id];
     let wave_id = wave_set_definition.wave_definition_ids[game.wave];
@@ -26,7 +21,8 @@ pub fn setup_spawn_timers(mut commands: Commands, data: Res<data::Data>, game: R
     }
 }
 
-pub fn spawn_entities(
+/// Spawns
+pub fn spawn_timed_units(
     mut commands: Commands,
     mut query: Query<(Entity, &mut SpawnTimer)>,
     time: Res<Time>,
@@ -38,7 +34,7 @@ pub fn spawn_entities(
             let unit_definition = &data.unit_definitions[&spawn_definition.unit_definition_id];
             commands.spawn((
                 game::Health(unit_definition.max_health.into()),
-                game::TeamMember(Some(spawn_definition.team_id)),
+                game::Team(spawn_definition.team_id),
             ));
             commands.entity(spawn_timer_entity).despawn();
         }

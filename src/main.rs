@@ -5,5 +5,5 @@ mod game;
 mod spawn;
 
 fn main() {
-    println!("{:?}", data::DATA)
+    game::run();
 }

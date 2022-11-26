@@ -1,26 +1,26 @@
 {
-    "unit_definitions": {
-        "0": {
+    "unit_definitions": [
+        {
             "id": 0,
-            "name": "enemy0",
+            "name": "Enemy 0",
             "max_health": 5,
             "speed": 1.0
         },
-        "1": {
+        {
             "id": 1,
-            "name": "enemy1",
+            "name": "Enemy 1",
             "max_health": 10,
             "speed": 0.8
         },
-        "2": {
+        {
             "id": 2,
-            "name": "enemy2",
+            "name": "Enemy 2",
             "max_health": 25,
             "speed": 0.5
         }
-    },
-    "wave_definitions": {
-        "0": {
+    ],
+    "wave_definitions": [
+        {
             "id": 0,
             "spawn_definitions": [
                 {
@@ -33,9 +33,9 @@
                 }
             ]
         }
-    },
-    "wave_set_definitions": {
-        "0": {
+    ],
+    "wave_set_definitions": [
+        {
             "id": 0,
             "wave_definition_ids": [
                 0,
@@ -46,5 +46,5 @@
                 0
             ]
         }
-    }
+    ]
 }
